@@ -131,5 +131,5 @@ confidence_interval
 
 ```
 # The data Semmelweis collected points to that:
-doctors_should_wash_their_hands = False
+doctors_should_wash_their_hands = True
 ```
