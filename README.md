@@ -1,12 +1,11 @@
 # semmelweis-handwashing
 
 ## 1. Meet Dr. Ignaz Semmelweis
-<p><img style="float: left;margin:5px 20px 5px 1px" src="https://assets.datacamp.com/production/project_20/img/ignaz_semmelweis_1860.jpeg"></p>
-<!--
-<img style="float: left;margin:5px 20px 5px 1px" src="https://assets.datacamp.com/production/project_20/datasets/ignaz_semmelweis_1860.jpeg">
--->
+
+<img width="269" alt="Screen Shot 2023-04-08 at 21 51 59" src="https://user-images.githubusercontent.com/86967515/230751758-313097fd-6490-437b-930e-d5bb2abddb8b.png">
+
 <p>This is Dr. Ignaz Semmelweis, a Hungarian physician born in 1818 and active at the Vienna General Hospital. If Dr. Semmelweis looks troubled it's probably because he's thinking about <em>childbed fever</em>: A deadly disease affecting women that just have given birth. He is thinking about it because in the early 1840s at the Vienna General Hospital as many as 10% of the women giving birth die from it. He is thinking about it because he knows the cause of childbed fever: It's the contaminated hands of the doctors delivering the babies. And they won't listen to him and <em>wash their hands</em>!</p>
-<p>In this notebook, we're going to reanalyze the data that made Semmelweis discover the importance of <em>handwashing</em>.
+<p>In this notebook, I'm going to reanalyze the data that made Semmelweis discover the importance of <em>handwashing</em>.
 
 ```
 # Importing modules
@@ -18,10 +17,11 @@ yearly = pd.read_csv("datasets/yearly_deaths_by_clinic.csv")
 # Print out yearly
 print(yearly)
 ```
+<img width="311" alt="Screen Shot 2023-04-08 at 21 52 36" src="https://user-images.githubusercontent.com/86967515/230751761-bcc39a17-d3bd-4e1b-b973-0eeff575d597.png">
 
 ## 2. The alarming number of deaths
 <p>The table above shows the number of women giving birth at the two clinics at the Vienna General Hospital for the years 1841 to 1846. You'll notice that giving birth was very dangerous; an <em>alarming</em> number of women died as the result of childbirth, most of them from childbed fever.</p>
-<p>We see this more clearly if we look at the <em>proportion of deaths</em> out of the number of women giving birth. Let's zoom in on the proportion of deaths at Clinic 1.</p>
+<p>We see this more clearly if we look at the <em>proportion of deaths</em> out of the number of women giving birth. I'm going to zoom in on the proportion of deaths at Clinic 1.</p>
 
 ```
 # Calculate proportion of deaths per no. births
@@ -34,9 +34,10 @@ clinic_2 = yearly[yearly["clinic"] == "clinic 2"]
 # Print out clinic_1
 print(clinic_1)
 ```
+<img width="448" alt="Screen Shot 2023-04-08 at 21 53 10" src="https://user-images.githubusercontent.com/86967515/230751763-673fda07-516b-4fde-b5c9-48ac2f4ed12c.png">
 
 ## 3. Death at the clinics
-<p>If we now plot the proportion of deaths at both Clinic 1 and Clinic 2  we'll see a curious pattern…</p>
+<p>If I now plot the proportion of deaths at both Clinic 1 and Clinic 2  I'll see a curious pattern…</p>
 
 ```
 # Import matplotlib
@@ -49,11 +50,12 @@ import matplotlib as plt
 ax = clinic_1.plot(x="year", y="proportion_deaths", label="Clinic 1")
 clinic_2.plot(x="year", y="proportion_deaths", label="Clinic 2", ax=ax, ylabel="proportion of deaths")
 ```
+<img width="592" alt="Screen Shot 2023-04-08 at 21 53 48" src="https://user-images.githubusercontent.com/86967515/230751801-83911a7e-f6d5-471e-a6b0-14e19d3e5ff1.png">
 
 ## 4. The handwashing begins
 <p>Why is the proportion of deaths consistently so much higher in Clinic 1? Semmelweis saw the same pattern and was puzzled and distressed. The only difference between the clinics was that many medical students served at Clinic 1, while mostly midwife students served at Clinic 2. While the midwives only tended to the women giving birth, the medical students also spent time in the autopsy rooms examining corpses. </p>
 <p>Semmelweis started to suspect that something on the corpses spread from the hands of the medical students, caused childbed fever. So in a desperate attempt to stop the high mortality rates, he decreed: <em>Wash your hands!</em> This was an unorthodox and controversial request, nobody in Vienna knew about bacteria at this point in time. </p>
-<p>Let's load in monthly data from Clinic 1 to see if the handwashing had any effect.</p>
+<p>I'm going to load in monthly data from Clinic 1 to see if the handwashing had any effect.</p>
 
 
 ```
@@ -68,12 +70,13 @@ print(monthly.head())
 ```
 
 ## 5. The effect of handwashing
-<p>With the data loaded we can now look at the proportion of deaths over time. In the plot below we haven't marked where obligatory handwashing started, but it reduced the proportion of deaths to such a degree that you should be able to spot it!</p>
+<p>With the data loaded we can now look at the proportion of deaths over time. In the plot below I haven't marked where obligatory handwashing started, but it reduced the proportion of deaths to such a degree that you should be able to spot it!</p>
 
 ```
 # Plot monthly proportion of deaths
 ax = monthly.plot(x="date", y="proportion_deaths", label="Proportion deaths")
 ```
+<img width="592" alt="Screen Shot 2023-04-08 at 21 54 19" src="https://user-images.githubusercontent.com/86967515/230751773-ef7a3976-974b-4d46-99f5-d75372d28d72.png">
 
 ## 6. The effect of handwashing highlighted
 <p>Starting from the summer of 1847 the proportion of deaths is drastically reduced and, yes, this was when Semmelweis made handwashing obligatory. </p>
@@ -92,6 +95,7 @@ after_washing = monthly[monthly["date"] >= handwashing_start]
 ax = before_washing.plot(x="date", y="proportion_deaths", label="Before")
 after_washing.plot(x="date", y="proportion_deaths", label="After", ax=ax, ylabel="Proportion Deaths")
 ```
+<img width="592" alt="Screen Shot 2023-04-08 at 21 54 34" src="https://user-images.githubusercontent.com/86967515/230751778-32ec56cf-edca-4f07-9354-a4a078233b18.png">
 
 ## 7. More handwashing, fewer deaths?
 <p>Again, the graph shows that handwashing had a huge effect. How much did it reduce the monthly proportion of deaths on average?</p>
@@ -109,7 +113,7 @@ mean_diff
 
 ## 8. A Bootstrap analysis of Semmelweis handwashing data
 <p>It reduced the proportion of deaths by around 8 percentage points! From 10% on average to just 2% (which is still a high number by modern standards). </p>
-<p>To get a feeling for the uncertainty around how much handwashing reduces mortalities we could look at a confidence interval (here calculated using the bootstrap method).</p>
+<p>To get a feeling for the uncertainty around how much handwashing reduces mortalities I could look at a confidence interval (here calculated using the bootstrap method).</p>
 
 ```
 # A bootstrap analysis of the reduction of deaths due to handwashing
